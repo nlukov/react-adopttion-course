@@ -1,7 +1,8 @@
 import React from "react";
-// import ReactDOM from "react-dom";
 import { render } from "react-dom";
 import SearchParams from "./SearchParams";
+import { Router, Link } from "@reach/router";
+import Details from "./Details";
 
 //use of React.StrictMode. This will throw warnings for things that the React Team will depricate.
 //It is recommended to use this for new applciations and NOT for legacy!
@@ -9,8 +10,13 @@ const App = () => {
   return (
     <React.StrictMode>
       <div>
-        <h1 id="something-important">Adopt Me!</h1>
-        <SearchParams />
+        <header>
+          <Link to="/">Adopt Me!</Link>
+        </header>
+        <Router>
+          <SearchParams path="/" />
+          <Details path="/details/:id" />
+        </Router>
       </div>
     </React.StrictMode>
   );
