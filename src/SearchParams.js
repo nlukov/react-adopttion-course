@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import pet, { ANIMALS } from "@frontendmasters/pet";
 import useDropdown from "./useDropdown";
-import { async } from "q";
 import Results from "./Results";
 
 const SearchParams = () => {

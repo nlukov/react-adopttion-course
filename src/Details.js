@@ -1,15 +1,8 @@
 import React from "react";
-import { Router } from "@reach/router";
 import pet from "@frontendmasters/pet";
 
 class Details extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      loading: true
-    };
-  }
+  state = { loading: true }; //This feature is called 'classProperties'. It is a proposal feature, should come in place of the 'super' sometime in 2019 or 2020
   //works like ajax request
   componentDidMount() {
     pet
