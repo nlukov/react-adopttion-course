@@ -1,11 +1,14 @@
 import React from "react";
 import pet from "@frontendmasters/pet";
 import Carousel from "./Carousel";
+import ErrorBoundary from "./ErrorBoundary";
 
 class Details extends React.Component {
   state = { loading: true }; //This feature is called 'classProperties'. It is a proposal feature, should come in place of the 'super' sometime in 2019 or 2020
+
   //works like ajax request
   componentDidMount() {
+    // throw new Error("aaa"); //throws an artificial error so we can test timeout and error handling
     pet
       .animal(this.props.id) //this is IMMUTABLE, it can't change them, only reads
       .then(({ animal }) => {
@@ -43,4 +46,10 @@ class Details extends React.Component {
   }
 }
 
-export default Details;
+export default function DetailsWithErrorBoundary(props) {
+  return (
+    <ErrorBoundary>
+      <Details {...props} />
+    </ErrorBoundary>
+  );
+}
