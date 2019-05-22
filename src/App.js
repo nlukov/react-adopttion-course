@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspence } from "react";
 import { render } from "react-dom";
 import SearchParams from "./SearchParams";
 import { Router, Link } from "@reach/router";
-import Details from "./Details";
 import ThemeContext from "./ThemeContext";
+
+const Details = lazy(() => import("./Details"));
 
 //use of React.StrictMode. This will throw warnings for things that the React Team will depricate.
 //It is recommended to use this for new applciations and NOT for legacy!
@@ -16,10 +17,12 @@ const App = () => {
           <header>
             <Link to="/">Adopt Me!</Link>
           </header>
-          <Router>
-            <SearchParams path="/" />
-            <Details path="/details/:id" />
-          </Router>
+          <Suspence fallback={<h1>Loading route...</h1>}>
+            <Router>
+              <SearchParams path="/" />
+              <Details path="/details/:id" />
+            </Router>
+          </Suspence>
         </div>
       </ThemeContext.Provider>
     </React.StrictMode>
